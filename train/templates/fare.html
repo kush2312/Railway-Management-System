@@ -1,0 +1,43 @@
+{% extends "header.html" %}
+{% block content %}
+	<div class="container">
+		<h1 style="text-align: center;">Fare Chart</h1>
+		<hr>
+    </div>
+	<div style = "padding: 10px 20px; font-size: 20px ;border: 1px solid #dddddd; border-radius: 3px; margin-top: 10%; width:150%;margin-left: 5%;margin-right: 5%">
+
+		<table class="table table-striped table-dark">
+		  <thead class="thead-dark">
+		    <tr>
+			  <th scope="col" style="text-align: center;">Train No.</th>
+		      <th scope="col" style="text-align: center;">Train Name</th>
+		      <th scope="col" style="text-align: center;">Source</th>
+		      <th scope="col" style="text-align: center;">Destination</th>
+		      <th scope="col" style="text-align: center;">AC I</th>
+		      <th scope="col" style="text-align: center;">AC II</th>
+		      <th scope="col" style="text-align: center;">AC III</th>
+		      <th scope="col" style="text-align: center;">Sleeper</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  	{% for train in trains %}		  		
+		  		<tr>
+			      	<td style="text-align: center;">{{ train.train_no }}</td>
+			      	<td style="text-align: center;">{{ train.train_name }}</td>
+			      	<td style="text-align: center;">{{ train.source }}</td>
+			      	<td style="text-align: center;">{{ train.destination }}</td>
+			      	
+			      	<td style="text-align: center;">Rs.{{ train.ac_first_class_fare }}</td>
+			      	<td style="text-align: center;">Rs.{{ train.ac_two_tier_fare }}</td>
+			      	<td style="text-align: center;">Rs.{{ train.ac_three_tier_fare }}</td>
+			      	<td style="text-align: center;">Rs.{{ train.sleeper_class_fare }}</td>
+		    	</tr>
+
+		  	{% endfor %}
+		
+		  </tbody>
+		</table>
+
+	</div>
+
+{% endblock content %}

@@ -1,0 +1,44 @@
+{% extends "header.html" %}
+{% block content %}
+<div class="container">
+  <h1 style="text-align: center;">PNR No: {{ ticket.pnr_number }}</h1>
+  <hr>
+  <div class="content-section" style="margin-left:0">
+    <p style="font-size:20px">Passenger Name:  {{ passenger.name }}</p>
+    <p style="font-size:20px">Age: {{ passenger.age }}</p>
+    <p style="font-size:20px">Source: {{ ticket.source }}</p>
+    <p style="font-size:20px">Destination: {{ ticket.destination }}</p>
+    <p style="font-size:20px">Train No: {{ ticket.train_no }}</p>
+    <p style="font-size:20px">Tier: {{ ticket.tier }}</p>
+    <p style="font-size:20px">Date of Journey: {{ ticket.journey_date }}</p>
+    <p style="font-size:20px">Fare: {{ ticket.fare }}</p>
+    <a style="font-size:16px" class="btn btn-success btn-sm mt-1 mb-1" href="{{ url_for('download', pnr=ticket.pnr_number) }}" target="_blank">Print Ticket</a>
+    <button style="font-size:16px" type="button" class="btn btn-danger btn-sm m-1 btn-outline-danger" data-toggle="modal" data-target="#cancelModal">Cancel Ticket</button>
+  </div>
+</div>
+
+<div class="modal fade" id="cancelModal" tabindex="-1" role="dialog" aria-labelledby="cancelModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="cancelModalLabel">Cancel Ticket? 
+          <span>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </span>
+        </h3>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure, you want to cancel the ticket?</p>
+      </div>
+      <div class="modal-footer">
+        <form action="{{ url_for('cancelTicket', pnr=ticket.pnr_number) }}" method="POST">
+          <input class="btn btn-danger" type="submit" value="Yes, Cancel">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,38 @@
+{% extends "header.html" %}
+{% block content %}
+<form method="POST" action="/book_ticket/add_passengers" class="form-inline container">
+    <div class="form-group col-lg-10 " style="margin-top: 50px;">
+        <label for="passengers" style="margin-right:5px">No. of Passengers</label>
+        <input name="passengers" id="passengers" type="number" min = 1 class="form-control">
+        <input type="submit" class="btn btn-primary" style="margin-left:5px"></input>
+    </div>
+</form>
+
+{% if loaded %}
+<div
+    style="background: #ffffff; padding: 10px 20px; border: 1px solid #dddddd; border-radius: 3px; margin-top: 50px; margin-left: 25%; width:100%;">
+    <form method="POST" action="/book_ticket/add_passengers">
+        <legend class="border-bottom mb-4">Add Passengers</legend>
+        {% for i in range(passengers) %}
+        <legend style="font-size: 16px; margin-left: auto;margin-right: auto; width:80%;">Passenger No. {{ loop.index }}</legend>
+        <fieldset class="form-group" style="background: #ffffff; padding: 10px 20px; margin-top: 10px; margin-bottom: 40px; margin-left: auto;margin-right: auto; width:80%;">
+        
+            <div class="form-group">
+            <label for="name1">Name</label>
+            <input type="text" name="name{{ loop.index }}" class="form-control" id="name1">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Age</label>
+            <input type="text" name="age{{ loop.index }}" class="form-control" id="exampleInputEmail1">
+        </div>
+        </fieldset>
+        {% endfor %}
+        <div class="form-group" style="text-align: center">
+            <input type="submit" name="addp" value="Book Ticket" class="btn btn-success">
+        </div>
+
+    </form>
+</div>
+{% endif %}
+
+{% endblock content %}

@@ -1,0 +1,71 @@
+{% extends "header.html" %}
+{% block content %}
+
+	<div style = "background: #ffffff; padding: 10px 20px; border: 1px solid #dddddd; border-radius: 3px; margin-top: 10%; width:150%;">
+
+		<table class="table table-striped table-dark">
+		  <thead class="thead-dark">
+		    <tr>
+		      <th scope="col" style="text-align: center;">Train Number</th>
+		      <th scope="col" style="text-align: center;">Train Name</th>
+		      <th scope="col" style="text-align: center;">Starting Station</th>
+		      <th scope="col" style="text-align: center;">Ending Station</th>
+		      <th scope="col" style="text-align: center;">Running Days</th>
+		      <th scope="col" style="text-align: center;">AC First Class Coaches</th>
+		      <th scope="col" style="text-align: center;">AC Two Tier Coaches</th>
+		      <th scope="col" style="text-align: center;">AC Three Tier Coaches</th>
+		      <th scope="col" style="text-align: center;">Sleeper Class Coaches</th>
+		      <th scope="col" style="text-align: center;">AC First Class Fare</th>
+		      <th scope="col" style="text-align: center;">AC Two Tier Fare</th>
+		      <th scope="col" style="text-align: center;">AC Three Tier Fare</th>
+		      <th scope="col" style="text-align: center;">Sleeper Class Fare</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  	{% for train in trains %}
+		  		{% set running_days = [] %}
+		  		{% for key in train.__table__.columns._data.keys() %}
+		  			{% if train[key] == 1 %}
+		  				{{ running_days.append(key) or "" }}
+		  			{% endif %}
+		  		{% endfor %}
+		  		<tr>
+			      	<td style="text-align: center;">{{ train.train_no }}</td>
+			      	<td style="text-align: center;">{{ train.train_name }}</td>
+			      	<td style="text-align: center;">{{ train.source }}</td>
+			      	<td style="text-align: center;">{{ train.destination }}</td>
+			      	<td style="text-align: center;">
+			      		{% for day in running_days %}
+			      			{{ day }},
+			      		{% endfor %}
+			      	</td>
+			      	<td style="text-align: center;">{{ train.ac_first_class_coaches }}</td>
+			      	<td style="text-align: center;">{{ train.ac_two_tier_coaches }}</td>
+			      	<td style="text-align: center;">{{ train.ac_three_tier_coaches }}</td>
+			      	<td style="text-align: center;">{{ train.sleeper_class_coaches }}</td>
+			      	<td style="text-align: center;">{{ train.ac_first_class_fare }}</td>
+			      	<td style="text-align: center;">{{ train.ac_two_tier_fare }}</td>
+			      	<td style="text-align: center;">{{ train.ac_three_tier_fare }}</td>
+			      	<td style="text-align: center;">{{ train.sleeper_class_fare }}</td>
+		    	</tr>
+
+		  	{% endfor %}
+		    
+		   <!--  <tr>
+		      <th scope="row" style="text-align: center;">2</th>
+		      <td style="text-align: center;">Jacob</td>
+		      <td style="text-align: center;">Thornton</td>
+		      <td style="text-align: center;">@fat</td>
+		    </tr>
+		    <tr>
+		      <th scope="row" style="text-align: center;">3</th>
+		      <td style="text-align: center;">Larry</td>
+		      <td style="text-align: center;">the Bird</td>
+		      <td style="text-align: center;">@twitter</td>
+		    </tr> -->
+		  </tbody>
+		</table>
+
+	</div>
+
+{% endblock content %}

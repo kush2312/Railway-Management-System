@@ -1,0 +1,35 @@
+{% extends "header.html" %}
+{% block content %}
+
+{% if my_bookings %}
+<div class="container">
+    <h1 style="text-align: center;">Your Bookings</h1>
+    <hr>
+    {% for ticket in my_bookings %}
+
+        <article class="content-section" style="margin-left:0">
+            <div class="media-body">
+                <div class="article-metadata" style="font-size:20px; margin-bottom:10px;">
+                    <a class="mr-2" href="{{ url_for('ticket', pnr=ticket.pnr_number) }}">PNR No.: {{ ticket.pnr_number }}</a>
+                </div>
+                <p class="article-content" style="font-size:20px">Train No.: {{ ticket.train_no }}</p>
+                <p class="article-content" style="font-size:20px">Tier: {{ ticket.tier }}</p>
+                <p class="article-content" style="font-size:20px">Seat No.: {{ ticket.seat_no }}</p>
+                <p class="article-content" style="font-size:20px">Date of Journey: {{ ticket.journey_date }}</p>
+                <p class="article-content" style="font-size:20px">Fare: Rs.{{ ticket.fare }}</p>
+            </div>
+        </article>
+
+    {% endfor %}
+
+</div>
+{% else %}
+<div class="container" style="text-align:center; margin-top:5%">
+    <h1>No Bookings Found</h1>
+    <div>
+        <h4 class="card-text">You haven't made any bookings yet.</h4>
+    </div>
+</div>
+{% endif %}
+
+{% endblock content %}

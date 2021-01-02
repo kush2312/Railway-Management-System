@@ -1,0 +1,256 @@
+{% extends "header.html" %}
+{% block content %}
+	<div style = "background: #ffffff; padding: 10px 20px; border: 1px solid #dddddd; border-radius: 3px; margin-top: 10%; margin-left:25%; margin-bottom: 10%; width:100%;">
+        <form method="POST" action="">
+            {{ form.csrf_token }}
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Add Train</legend>
+                <div class="form-group">
+                    {{ form.trainName.label(class="form-control-label") }}
+
+                    {% if form.trainName.errors %}
+                        {{ form.trainName(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.trainName.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.trainName(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.trainID.label(class="form-control-label") }}
+                    {% if form.trainID.errors %}
+                        {{ form.trainID(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.trainID.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.trainID(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.starting.label(class="form-control-label") }}
+                    {% if form.starting.errors %}
+                        {{ form.starting(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.starting.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.starting(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {{ form.ending.label(class="form-control-label") }}
+                    {% if form.ending.errors %}
+                        {{ form.ending(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.ending.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.ending(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                <div class="form-check form-group">
+                    {{ form.sunday(class="form-check-input") }}
+                    {{ form.sunday.label(class="form-check-label") }}
+                    {{ form.monday(class="form-check-input ") }}
+                    {{ form.monday.label(class="form-check-label") }}
+                    {{ form.tuesday(class="form-check-input") }}
+                    {{ form.tuesday.label(class="form-check-label") }}
+                    {{ form.wednesday(class="form-check-input") }}
+                    {{ form.wednesday.label(class="form-check-label") }}
+                    {{ form.thursday(class="form-check-input") }}
+                    {{ form.thursday.label(class="form-check-label") }}
+                    {{ form.friday(class="form-check-input") }}
+                    {{ form.friday.label(class="form-check-label") }}
+                    {{ form.saturday(class="form-check-input") }}
+                    {{ form.saturday.label(class="form-check-label") }}
+                </div>
+               
+
+                <legend class="border-bottom mb-4">No. of Coaches (Minimum 2 for each)</legend>
+
+                <div class="form-group">
+                    {{ form.acFirstClassCoaches.label(class="form-control-label") }}
+
+                    {% if form.acFirstClassCoaches.errors %}
+                        {{ form.acFirstClassCoaches(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.acFirstClassCoaches.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.acFirstClassCoaches(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.acTwoTierCoaches.label(class="form-control-label") }}
+
+                    {% if form.acTwoTierCoaches.errors %}
+                        {{ form.acTwoTierCoaches(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.acTwoTierCoaches.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.acTwoTierCoaches(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.acThreeTierCoaches.label(class="form-control-label") }}
+
+                    {% if form.acThreeTierCoaches.errors %}
+                        {{ form.acThreeTierCoaches(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.acThreeTierCoaches.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.acThreeTierCoaches(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.sleeperClassCoaches.label(class="form-control-label") }}
+
+                    {% if form.sleeperClassCoaches.errors %}
+                        {{ form.sleeperClassCoaches(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.sleeperClassCoaches.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.sleeperClassCoaches(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <legend class="border-bottom mb-4">Fare Allottment</legend>
+
+                <div class="form-group">
+                    {{ form.acFirstClassFare.label(class="form-control-label") }}
+
+                    {% if form.acFirstClassFare.errors %}
+                        {{ form.acFirstClassFare(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.acFirstClassFare.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.acFirstClassFare(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.acTwoTierFare.label(class="form-control-label") }}
+
+                    {% if form.acTwoTierFare.errors %}
+                        {{ form.acTwoTierFare(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.acTwoTierFare.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.acTwoTierFare(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.acThreeTierFare.label(class="form-control-label") }}
+
+                    {% if form.acThreeTierFare.errors %}
+                        {{ form.acThreeTierFare(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.acThreeTierFare.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.acThreeTierFare(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.sleeperClassFare.label(class="form-control-label") }}
+
+                    {% if form.sleeperClassFare.errors %}
+                        {{ form.sleeperClassFare(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.sleeperClassFare.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.sleeperClassFare(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+                
+                <legend class="border-bottom mb-4">Timings</legend>
+                <div class="form-group">
+                    {{ form.departure.label(class="form-control-label") }}
+
+                    {% if form.departure.errors %}
+                        {{ form.departure(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.departure.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.departure(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.arrival.label(class="form-control-label") }}
+
+                    {% if form.arrival.errors %}
+                        {{ form.arrival(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.arrival.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.arrival(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    {{ form.tot_time.label(class="form-control-label") }}
+
+                    {% if form.tot_time.errors %}
+                        {{ form.tot_time(class="form-control form-control-lg is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.arrival.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.tot_time(class="form-control form-control-lg") }}
+                    {% endif %}
+                </div>
+
+            </fieldset>
+            <div class="form-group" style="text-align:center">
+                {{ form.submit(class="btn btn-success") }}
+            </div>
+        </form>
+    </div>
+{% endblock content %}
